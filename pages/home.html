@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <style>
+      .sticky {
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        top: 0;
+        align-self: flex-start; /* <-- this is the fix */
+        background-color: red; /* Not necessary -- for example only */
+      }
+    </style> -->
+  </head>
+  <body>
+    <script src="../js/navbar.js"></script>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- sidebar -->
+        <div
+          class="col-1 p-0 d-none d-md-block bg-body-secondary sticky"
+          style="
+            position: -webkit-sticky;
+            position: sticky;
+            top: 71px;
+            align-self: flex-start;
+          "
+        >
+          <div class="d-flex flex-column bg-body pt-5 gap-4 vh-100 w-75">
+            <!-- search -->
+            <div
+              class="d-flex justify-content-center p-3"
+              role="button"
+              onmouseover="this.classList.add('bg-primary')"
+              onmouseout="this.classList.remove('bg-primary')"
+            >
+              <i class="fa-solid fs-5 fa-magnifying-glass"></i>
+            </div>
+            <!-- cart -->
+            <div
+              class="d-flex justify-content-center p-3"
+              role="button"
+              id="productCartSidebarBtn"
+              onmouseover="this.classList.add('bg-primary')"
+              onmouseout="this.classList.remove('bg-primary')"
+            >
+              <i class="fa-solid fs-5 fa-cart-shopping"></i>
+            </div>
+            <!-- history -->
+            <div
+              class="d-flex justify-content-center p-3"
+              role="button"
+              id="productHistorySidebarBtn"
+              onmouseover="this.classList.add('bg-primary')"
+              onmouseout="this.classList.remove('bg-primary')"
+            >
+              <i class="fa-solid fs-5 fa-clock-rotate-left"></i>
+            </div>
+            <!-- theme -->
+            <div
+              class="d-flex justify-content-center p-3"
+              role="button"
+              onmouseover="this.classList.add('bg-primary')"
+              onmouseout="this.classList.remove('bg-primary')"
+            >
+              <i class="fa-solid fs-5 fa-circle-half-stroke"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-11 bg-body-secondary">
+          <!-- section -->
+          <div
+            class="row justify-content-center justify-content-md-start"
+            id="productSection"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- popper js -->
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/head.js"></script>
+    <script src="../js/home.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/purchase.js"></script>
+    <script src="../js/history.js"></script>
+  </body>
+</html>
