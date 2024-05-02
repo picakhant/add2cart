@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- <style>
-      .sticky {
-        position: -webkit-sticky; /* for Safari */
-        position: sticky;
-        top: 0;
-        align-self: flex-start; /* <-- this is the fix */
-        background-color: red; /* Not necessary -- for example only */
-      }
-    </style> -->
-  </head>
+  <head> </head>
   <body>
     <script src="../js/navbar.js"></script>
     <div class="container-fluid">
@@ -30,6 +20,7 @@
             <div
               class="d-flex justify-content-center p-3"
               role="button"
+              id="searchProductListBtn"
               onmouseover="this.classList.add('bg-primary')"
               onmouseout="this.classList.remove('bg-primary')"
             >
@@ -59,6 +50,7 @@
             <div
               class="d-flex justify-content-center p-3"
               role="button"
+              id="changeTheme"
               onmouseover="this.classList.add('bg-primary')"
               onmouseout="this.classList.remove('bg-primary')"
             >
@@ -74,6 +66,37 @@
           ></div>
         </div>
       </div>
+
+      <!-- footer -->
+      <footer class="row p-3">
+        <div class="col-4">
+          <a
+            href="https://github.com/picakhant"
+            class="d-flex text-secondary align-items-center gap-1 fs-6 text-decoration-none"
+          >
+            <i class="fa-brands fa-square-github fs-3"></i>
+            Git hub
+          </a>
+        </div>
+        <div class="col-4">
+          <a
+            href="https://github.com/picakhant"
+            class="d-flex text-secondary align-items-center gap-1 fs-6 text-decoration-none"
+          >
+            <i class="fa-brands fa-square-facebook fs-3"></i>
+            Facebook
+          </a>
+        </div>
+        <div class="col-4">
+          <a
+            href="https://github.com/picakhant"
+            class="d-flex text-secondary align-items-center gap-1 fs-6 text-decoration-none"
+          >
+            <i class="fa-regular fa-envelope fs-3"></i>
+            zawwinkhant94@gmail.com
+          </a>
+        </div>
+      </footer>
     </div>
 
     <!-- popper js -->
@@ -84,5 +107,45 @@
     <script src="../js/cart.js"></script>
     <script src="../js/purchase.js"></script>
     <script src="../js/history.js"></script>
+    <script src="../js/about.js"></script>
+    <script>
+      const changeThemeBtn = document.getElementById("changeTheme"); // on PC
+      const changeTheme1Btn = document.getElementById("changeTheme1");
+      const theme = localStorage.getItem("theme");
+
+      document.body.setAttribute(
+        "data-bs-theme",
+        localStorage.getItem("theme")
+      );
+
+      const changeThemeFun = () => {
+        const theme = localStorage.getItem("theme");
+
+        if (!theme) {
+          localStorage.setItem("theme", "dark");
+          document.body.setAttribute("data-bs-theme", "dark");
+          return;
+        }
+
+        if (theme) {
+          if (theme === "dark") {
+            localStorage.setItem("theme", "light");
+            document.body.setAttribute("data-bs-theme", "light");
+          } else {
+            localStorage.setItem("theme", "dark");
+            document.body.setAttribute("data-bs-theme", "dark");
+          }
+        }
+      };
+
+      changeThemeBtn.addEventListener("click", () => {
+        changeThemeFun();
+        console.log(123);
+      });
+
+      changeTheme1Btn.addEventListener("click", () => {
+        changeThemeFun();
+      });
+    </script>
   </body>
 </html>

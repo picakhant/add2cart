@@ -1,8 +1,5 @@
 const head = document.getElementsByTagName("head")[0];
 
-//set dark theme
-document.body.setAttribute("data-bs-theme", "dark");
-
 const origin = location.origin;
 let urlPath = location.href;
 let titleName;
@@ -66,5 +63,6 @@ head.innerHTML = `<meta charset="UTF-8" />
   font-variation-settings:
     "wdth" 100;
 }
+
 </style>
 `;

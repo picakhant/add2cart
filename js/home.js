@@ -197,6 +197,9 @@ const showProducts = async (category = "all") => {
     }
 
     addProductsToSection(data);
+
+    //set all products in locastorage
+    localStorage.setItem("products", JSON.stringify(data));
   } catch (error) {
     alert(error);
   }
@@ -212,3 +215,80 @@ productFilter.addEventListener("change", (e) => {
 window.addEventListener("load", () => {
   showProducts();
 });
+
+//search modal
+const searchModal = document.createElement("div");
+searchModal.classList.add("modal", "fade");
+searchModal.id = "searchModal";
+searchModal.setAttribute("data-bs-backdrop", "static");
+searchModal.setAttribute("data-bs-keyboard", "false");
+searchModal.setAttribute("tabindex", "-1");
+searchModal.setAttribute("aria-labelledby", "searchModalLabel");
+searchModal.setAttribute("aria-hidden", "true");
+
+//card modal
+searchModal.innerHTML = `
+   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+     <div class="modal-content">
+       <div class="modal-header d-flex justify-content-between ">
+            <form class="flex-grow-1 ">
+             <input type="text" id="searchInput" class="form-control" placeholder="Search ...">
+            </form>
+         <button type="button" id="cartCloseModalBtn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body p-0">
+            <h3 class='text-center p-3'>No search Result</h3>
+       </div>
+     </div>
+   </div>
+`;
+
+// open modal when click search btn
+const searchProductListBtn = document.getElementById("searchProductListBtn");
+searchProductListBtn.addEventListener("click", () => {
+  const modal = new bootstrap.Modal(searchModal);
+  modal.show();
+});
+
+//search the products
+const productSearch = (products, userInput) => {
+  const searchModalBody = searchModal.querySelector(".modal-body");
+  searchModalBody.innerHTML = "";
+
+  if (userInput === "" || products.length < 1) {
+    console.log(12);
+    searchModalBody.innerHTML =
+      "<h3 class='text-center p-3'>No search Result</h3>";
+    return;
+  }
+
+  //clear previous result
+
+  // filter the result
+  const searchResult = products.filter((item) => {
+    return item.title.toLowerCase().includes(userInput.toLowerCase());
+  });
+
+  //show search result in ui
+  searchResult.forEach((product) => {
+    const div = document.createElement("div");
+    div.classList.add("p-3", "my11", "bg-dark-subtle");
+    div.textContent = product.title;
+    div.setAttribute("data-bs-dismiss", "modal");
+
+    div.addEventListener("click", () => {
+      shoProductDetailModal(product);
+    });
+
+    searchModalBody.append(div);
+  });
+};
+
+//search input
+const searchInput = searchModal.querySelector("#searchInput");
+searchInput.addEventListener("keyup", (e) => {
+  productSearch(JSON.parse(localStorage.getItem("products")), e.target.value);
+});
+
+//add modal to body
+document.body.append(searchModal);

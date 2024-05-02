@@ -12,29 +12,36 @@ navbar.innerHTML = `
           <img
             src="https://cdn-icons-png.flaticon.com/128/9453/9453946.png"
             alt="logo"
+            class="d-none d-md-block"
             style="height: 45px"
           />
-          <span class="fs-4">Add2Cart</span>
+          <span class="fs-4 d-none d-md-block">Add2Cart</span>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/9453/9453946.png"
+            alt="logo"
+            class="d-block d-md-none"
+            style="height: 25px"
+          />
         </a>
 
         <!-- navbar item  -->
-        <div class="d-none d-md-flex align-items-center ">
+        <div class="d-flex align-items-center ">
           <ul class="navbar-nav d-flex align-items-center flex-row gap-3">
-            <li class="nav-item">
+            <li class="nav-item d-none d-md-block">
              <div class="nav-link btn active">Home</div>
             </li>
-            <li class="nav-item">
-             <div class="nav-link btn">About Us</div>
+            <li class="nav-item d-none d-md-block">
+             <div class="nav-link btn" data-bs-toggle="modal" data-bs-target="#aboutUs">About Us</div>
             </li>
             <li class="nav-link">
               <form>
-              <select class="form-select" id="productFilter">
+              <select class="form-select form-control-sm" id="productFilter">
                 <option value="all">All</option>
               </select>
               </form>
             </li>
           </ul>
-          <div class="dropstart ms-3">
+          <div class="dropstart ms-3 d-none d-md-block">
             <button
               class="btn dropdown-toggle rounded"
               type="button"
@@ -48,7 +55,7 @@ navbar.innerHTML = `
                 JSON.parse(localStorage.getItem("userData")).name
               }</a></li>
               <li><a class="dropdown-item">${
-                JSON.parse(localStorage.getItem("userData")).name
+                JSON.parse(localStorage.getItem("userData")).email
               }</a></li>
             </ul>
           </div>
@@ -83,13 +90,27 @@ navbar.innerHTML = `
           <div class="offcanvas-body">
             <div class="container-fluid">
               <div class="row gap-3">
-                <div class="col-12 fs-5">Cart</div>
-                <div class="col-12 fs-5" 
-                data-bs-toggle="modal"
-                data-bs-target="#historyModal"
-                >History</div>
-                <div class="col-12 fs-5">Name</div>
-                <div class="col-12 fs-5">Email</div>
+                <div class="col-12">${
+                  JSON.parse(localStorage.getItem("userData")).name
+                }</div>
+                <div class="col-12">${
+                  JSON.parse(localStorage.getItem("userData")).email
+                }</div>
+                <div class="col-12" data-bs-toggle="modal" data-bs-target="#productCart">
+                  Cart
+                </div>
+                <div class="col-12" data-bs-toggle="modal" data-bs-target="#historyCart">
+                  History
+                </div>
+                <div class="col-12" data-bs-toggle="modal" data-bs-target="#searchModal">
+                  Search
+                </div>
+                <div class="col-12" id="changeTheme1">
+                  Change Theme
+                </div>
+                <div class="col-12" id="">
+                  About Us
+                </div>
               </div>
             </div>
           </div>
